@@ -11,15 +11,27 @@ def isReleaseBuild() {
 }
 
 def getRepositoryUrl() {
-    return isReleaseBuild() ? REPO_URL : LOCAL_REPO_URL
+    if (isReleaseBuild()) {
+        return hasProperty('REPO_URL') ? REPO_URL
+                : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+    }
+    return LOCAL_REPO_URL
+}
+
+def getSnapshotRepositoryUrl() {
+    if (isReleaseBuild()) {
+        return hasProperty('SNAPSHOT_REPO_URL') ? SNAPSHOT_REPO_URL
+                : "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    return LOCAL_REPO_URL
 }
 
 def getRepositoryUsername() {
-    return hasProperty('MVN_USER') ? property('MVN_USER') : "foo"
+    return hasProperty('REPO_USER') ? property('REPO_USER') : "foo"
 }
 
 def getRepositoryPassword() {
-    return hasProperty('MVN_PWD') ? property('MVN_PWD') : "bar"
+    return hasProperty('REPO_PWD') ? property('REPO_PWD') : "bar"
 }
 
 def configPom(pom) {
@@ -80,9 +92,13 @@ afterEvaluate { project ->
                 repository(url: getRepositoryUrl()) {
                     authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
                 }
+                snapshotRepository(url: getSnapshotRepositoryUrl()) {
+                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                }
             } else {
                 ARLog('build local')
                 repository(url: getRepositoryUrl())
+                snapshotRepository(url: getSnapshotRepositoryUrl())
             }
 
             ARLog("version<${MAVEN_PROJECT_VERSION}>")
@@ -110,8 +126,6 @@ afterEvaluate { project ->
 
         task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
             classifier = 'javadoc'
-
-            ARLog(androidJavadocs.destinationDir)
             from androidJavadocs.destinationDir
         }
 
