@@ -1,4 +1,4 @@
-package androidrubick.base.utils;
+package androidrubick.base.math;
 
 /**
  * <p/>
