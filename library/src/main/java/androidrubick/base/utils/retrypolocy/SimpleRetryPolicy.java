@@ -1,6 +1,6 @@
 package androidrubick.base.utils.retrypolocy;
 
-import androidrubick.base.utils.MathPreconditions;
+import androidrubick.base.math.MathPreconditions;
 
 /**
  *

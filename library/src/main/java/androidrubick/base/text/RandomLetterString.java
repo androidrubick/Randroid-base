@@ -2,7 +2,7 @@ package androidrubick.base.text;
 
 import java.util.Random;
 
-import androidrubick.base.utils.MathPreconditions;
+import androidrubick.base.math.MathPreconditions;
 
 /**
  * {@doc}
