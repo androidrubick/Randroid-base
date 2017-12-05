@@ -16,7 +16,7 @@ public final class ARLogger {
     /**
      * set global {@link ARLog} instance
      */
-    public static void setVSLog(ARLog instance) {
+    public static void setARLog(ARLog instance) {
         sInstance = instance;
     }
 
