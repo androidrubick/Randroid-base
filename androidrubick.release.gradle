@@ -70,17 +70,6 @@ def configPom(pom) {
     }
 }
 
-// see https://mbcdev.com/2015/02/18/building-javadocs-for-android-library-projects-with-gradle/
-android.libraryVariants.all { variant ->
-    if (variant.name == 'release') {
-        ARLog("get java compile source & classpaths of release variant")
-        def androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
-        project.ext.AR_EXTRAS.JAVADOC_SOURCES = variant.javaCompile.source
-        project.ext.AR_EXTRAS.JAVADOC_CLASSPATHS = files(variant.javaCompile.classpath.files) + files(androidJar)
-        ARLog("AR_EXTRAS.JAVADOC_CLASSPATHS : $AR_EXTRAS.JAVADOC_CLASSPATHS.files")
-    }
-}
-
 afterEvaluate { project ->
     version = MAVEN_PROJECT_VERSION
     group = MAVEN_PROJECT_GROUP
@@ -121,6 +110,17 @@ afterEvaluate { project ->
     if (project.getPlugins().hasPlugin('com.android.application') ||
             project.getPlugins().hasPlugin('com.android.library')) {
         ARLog('process android library')
+
+        // see https://mbcdev.com/2015/02/18/building-javadocs-for-android-library-projects-with-gradle/
+        android.libraryVariants.all { variant ->
+            if (variant.name == 'release') {
+                ARLog("get java compile source & classpaths of release variant")
+                def androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
+                project.ext.AR_EXTRAS.JAVADOC_SOURCES = variant.javaCompile.source
+                project.ext.AR_EXTRAS.JAVADOC_CLASSPATHS = files(variant.javaCompile.classpath.files) + files(androidJar)
+                ARLog("AR_EXTRAS.JAVADOC_CLASSPATHS : $AR_EXTRAS.JAVADOC_CLASSPATHS.files")
+            }
+        }
 
         task install(type: Upload, dependsOn: assemble) {
             repositories.mavenInstaller {
