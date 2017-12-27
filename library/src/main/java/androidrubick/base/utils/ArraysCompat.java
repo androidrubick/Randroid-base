@@ -42,6 +42,72 @@ public class ArraysCompat {
     }
 
     /**
+     * 借用可变参数的便利性，生成一个由参数元素组成的数组
+     *
+     * @param elements 数组元素
+     *
+     * @since 1.0
+     */
+    public static byte[] by(byte...elements) {
+        return elements;
+    }
+
+    /**
+     * 借用可变参数的便利性，生成一个由参数元素组成的数组
+     *
+     * @param elements 数组元素
+     *
+     * @since 1.0
+     */
+    public static char[] by(char...elements) {
+        return elements;
+    }
+
+    /**
+     * 借用可变参数的便利性，生成一个由参数元素组成的数组
+     *
+     * @param elements 数组元素
+     *
+     * @since 1.0
+     */
+    public static int[] by(int...elements) {
+        return elements;
+    }
+
+    /**
+     * 借用可变参数的便利性，生成一个由参数元素组成的数组
+     *
+     * @param elements 数组元素
+     *
+     * @since 1.0
+     */
+    public static long[] by(long...elements) {
+        return elements;
+    }
+
+    /**
+     * 借用可变参数的便利性，生成一个由参数元素组成的数组
+     *
+     * @param elements 数组元素
+     *
+     * @since 1.0
+     */
+    public static float[] by(float...elements) {
+        return elements;
+    }
+
+    /**
+     * 借用可变参数的便利性，生成一个由参数元素组成的数组
+     *
+     * @param elements 数组元素
+     *
+     * @since 1.0
+     */
+    public static double[] by(double...elements) {
+        return elements;
+    }
+
+    /**
      * 获取数组的长度，如果数组为null，则返回0；
      *
      * @since 1.0
