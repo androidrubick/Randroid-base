@@ -37,7 +37,7 @@ public class ArraysCompat {
      *
      * @since 1.0
      */
-    public static <T>T[] by(T...elements) {
+    public static <T>T[] byElements(T...elements) {
         return elements;
     }
 
