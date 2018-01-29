@@ -1,0 +1,3 @@
+[submodule "androidrubick-project-scripts"]
+	path = androidrubick-project-scripts
+	url = https://github.com/androidrubick/template-scripts

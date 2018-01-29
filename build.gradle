@@ -1,23 +1,24 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: file('./androidrubick.local.gradle')
 
 buildscript {
+    Properties properties = new Properties()
+    properties.load(file('./androidrubick-project-scripts/build-script/build-config.properties').newReader())
+
+    def AVAILABLE_MAVEN_REPO = properties.getProperty('AVAILABLE_MAVEN_REPO').split(';')
+    def ANDROID_BUILD_GRADLE_PLUGIN = properties.getProperty('ANDROID_BUILD_GRADLE_PLUGIN')
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        AVAILABLE_MAVEN_REPO.each { mavenUrl ->
+            maven { url mavenUrl }
+        }
         jcenter()
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:${GRADLE_BUILD_VERSION}"
+        classpath ANDROID_BUILD_GRADLE_PLUGIN
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
-allprojects {
-    repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        jcenter()
-    }
-}
+apply from: file('./androidrubick-project-scripts/androidrubick.build.gradle')
