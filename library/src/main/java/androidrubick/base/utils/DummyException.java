@@ -15,6 +15,7 @@ import java.io.PrintWriter;
  *
  * @since 1.0
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class DummyException extends Exception {
 
     private Throwable mCause;

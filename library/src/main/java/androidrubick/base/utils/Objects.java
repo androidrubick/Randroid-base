@@ -16,6 +16,7 @@ import java.util.Map;
  *
  * @since 1.0
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class Objects {
 
     private Objects() {}
@@ -30,9 +31,7 @@ public class Objects {
     }
 
     /**
-     * 判断一个对象是否为“空”——null 或者是对象意义上的空，如空字符串，
-     *
-     * 空数组，空集合，空字典等
+     * 判断一个对象是否为“空”——null 或者是对象意义上的空，如空字符串，空数组，空集合，空字典等
      *
      * @since 1.0
      */
@@ -236,6 +235,7 @@ public class Objects {
         return name.substring(start + 1);
     }
 
+    @SuppressWarnings({"unchecked", "RedundantCast"})
     public static <T> T getAs(Object o) {
         if (null == o) {
             return (T) null;
@@ -247,6 +247,7 @@ public class Objects {
         }
     }
 
+    @SuppressWarnings({"unchecked", "RedundantCast"})
     public static <T> T getAs(Object o, Class<T> clz) {
         if (null == o) {
             return (T) null;
@@ -286,6 +287,7 @@ public class Objects {
      *
      * @since 1.0
      */
+    @SuppressWarnings("unchecked")
     public static <T>T defValue(Class<T> type) {
         return (T) Primitives.defValueOf(type);
     }

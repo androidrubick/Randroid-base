@@ -30,6 +30,7 @@ import java.util.Map;
  *
  * @since 1.0
  */
+@SuppressWarnings({"Convert2Diamond", "WeakerAccess", "unused"})
 public final class Primitives {
     private Primitives() {
     }
@@ -86,6 +87,7 @@ public final class Primitives {
      *
      * @since 1.0
      */
+    @SuppressWarnings("SuspiciousMethodCalls")
     public static boolean isPrimitive(Type type) {
         return PRIMITIVE_TO_WRAPPER_TYPE.containsKey(type);
     }
@@ -98,6 +100,7 @@ public final class Primitives {
      *
      * @since 1.0
      */
+    @SuppressWarnings("SuspiciousMethodCalls")
     public static boolean isWrapperType(Type type) {
         return WRAPPER_TO_PRIMITIVE_TYPE.containsKey(type);
     }

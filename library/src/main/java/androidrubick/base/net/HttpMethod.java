@@ -9,6 +9,7 @@ package androidrubick.base.net;
  *
  * @since 1.0
  */
+@SuppressWarnings("unused")
 public enum HttpMethod {
 
     /**

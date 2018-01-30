@@ -11,6 +11,7 @@ import static androidrubick.base.utils.Preconditions.checkNotNull;
  *
  * @since 1.0
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ToStringHelper {
 
     private final String className;

@@ -6,6 +6,7 @@ package androidrubick.base.utils;
  *
  * @since 1.0
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class NumberUtils {
 
 	/**
@@ -262,7 +263,7 @@ public class NumberUtils {
 	 * </p>
 	 * @param d 数值
 	 * @param ignorePositive 如果是正数，是否需要返回符号，如果为false，则为空字符串。
-	 * @return
+	 * @return +/- sign or empty string when {@code d} is non-negative
      *
      * @since 1.0
 	 */
@@ -272,18 +273,18 @@ public class NumberUtils {
 		}
 		return d > 0 ? (ignorePositive ? "" : PLUS_SIGN) : MINUS_SIGN;
 	}
-	
+
 	/**
 	 * 格式化数值，根据单位进行换算，将数值转化到最接近的单位，并返回带单位的字符串。
 	 * <p>
 	 * 如果参数中的单位阶数不够，则截止到最大单位。
 	 * </p>
-	 * @param i 原数值
+	 *
+	 * @param i                     原数值
 	 * @param incrementBetweenUnits 相邻单位之间的变化数值，比如长度中以10为换算，则incrementBetweenUnits为10
-	 * @param units 字符串单位阶数数组
+	 * @param units                 字符串单位阶数数组
 	 * @return 经过格式化后的字符串
-     *
-     * @since 1.0
+	 * @since 1.0
 	 */
 	public static String formatByUnit(int i, int incrementBetweenUnits, String...units) {
 		if (incrementBetweenUnits <= 0) {
@@ -294,7 +295,7 @@ public class NumberUtils {
 		}
 		int unitIndex = 0;
 		int nearestVal = Math.abs(i);
-		int tmp = 0;
+		int tmp;
 		while ((tmp = nearestVal / incrementBetweenUnits) > 0) {
 			// 如果参数中的单位阶数不够，则截止到最大单位
 			if (unitIndex >= units.length - 1) {
@@ -322,20 +323,20 @@ public class NumberUtils {
 	public static String formatByUnit(double d, double incrementBetweenUnits, int scale, String...units) {
 		return formatByUnit(d, incrementBetweenUnits, incrementBetweenUnits, scale, units);
 	}
-	
+
 	/**
 	 * 格式化数值，根据单位进行换算，将数值转化到最接近的单位，并返回带单位的字符串。
 	 * <p>
 	 * 如果参数中的单位阶数不够，则截止到最大单位。
 	 * </p>
-	 * @param d 原数值
+	 *
+	 * @param d                     原数值
 	 * @param incrementBetweenUnits 相邻单位之间的变化数值，比如长度中以10为换算，则incrementBetweenUnits为10
-	 * @param offset 达到某一值时，我们认为可以使用下一个单位。比如，在文件大小的显示上，incrementBetweenUnits为1024，但是在某些情况下达到900时，我们可能就要它使用下一阶单位，比如0.91M
-	 * @param scale 最终返回的字符串中，数值的小数点后位数
-	 * @param units 字符串单位阶数数组
+	 * @param offset                达到某一值时，我们认为可以使用下一个单位。比如，在文件大小的显示上，incrementBetweenUnits为1024，但是在某些情况下达到900时，我们可能就要它使用下一阶单位，比如0.91M
+	 * @param scale                 最终返回的字符串中，数值的小数点后位数
+	 * @param units                 字符串单位阶数数组
 	 * @return 经过格式化后的字符串
-     *
-     * @since 1.0
+	 * @since 1.0
 	 */
 	public static String formatByUnit(double d, double incrementBetweenUnits,
                                       double offset, int scale, String...units) {
@@ -355,7 +356,7 @@ public class NumberUtils {
 		// |		4		|	  check		|--->return?
 		// |	   ...		|	   ....		|
 		if (unitIndex < units.length - 1) {
-			double tmp = 0;
+			double tmp;
 			while ((int)(tmp = nearestVal / incrementBetweenUnits) > 0) {
 				unitIndex ++;
 				nearestVal = tmp;

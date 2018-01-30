@@ -15,6 +15,7 @@ import java.io.PrintWriter;
  *
  * @since 1.0
  */
+@SuppressWarnings("WeakerAccess")
 public class DummyRuntimeException extends RuntimeException {
 
     private Throwable mCause;

@@ -25,6 +25,7 @@ package androidrubick.base.utils;
  *
  * @since 1.0
  */
+@SuppressWarnings({"unused", "UnnecessaryEnumModifier"})
 public enum StandardSystemProperty {
 
     /**
